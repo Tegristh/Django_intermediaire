@@ -14,6 +14,8 @@ from pathlib import Path
 
 # Login url
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -95,10 +97,21 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        
+    },
+    {
+        'NAME': 'authentication.validators.ContainsLetterValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length' : 8,
+        }
     },
+    {
+        'NAME': 'authentication.validators.ContainsNumberValidator'
+    },
+
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
@@ -111,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 
